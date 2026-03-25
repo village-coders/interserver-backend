@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const dotenv = require('dotenv');
 const connectDB = require('./db');
 
@@ -20,17 +19,15 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.get('/', (req, res) => {
-    res.send("Hello World");
+    res.status(200).json({ message: "InterServer Portal API is running" });
 });
+
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/invoices', require('./routes/invoiceRoutes'));
 
-// Serve static frontend files from 'public' folder (one level up from /api)
-// app.use(express.static(path.join(__dirname, '../public')));
-
-// Fallback to index.html for unknown frontend routes
-app.get('*', (req, res) => {
-    res.send("Hello World");
+// 404 for unknown routes
+app.all('*', (req, res) => {
+    res.status(404).json({ message: "API route not found" });
 });
 
 // Start Server
