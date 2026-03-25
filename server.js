@@ -20,7 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // Serve static frontend files from '../www.interserver.net' directory
 app.use(express.static(path.join(__dirname, '../www.interserver.net')));
-
+app.use("/", (req, res) => {
+    res.send("Welcome to InterServer Portal")
+})
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/invoices', require('./routes/invoiceRoutes'));
