@@ -42,13 +42,13 @@ const createInvoice = async (req, res) => {
         dueDate = '2026-10-16';
     }
 
-    const uniqueInvId = invId + '-' + Math.floor(1000 + Math.random() * 9000);
+    // const uniqueInvId = invId + '-' + Math.floor(1000 + Math.random() * 9000);
     const date = new Date().toISOString().split('T')[0];
     const status = 'Pending';
 
     try {
         const invoice = await Invoice.create({
-            id: uniqueInvId,
+            id: invId,
             userId: req.user.id,
             date,
             status,
