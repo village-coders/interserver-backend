@@ -19,6 +19,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
+app.get('/', (req, res) => {
+    res.send("Hello World");
+});
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/invoices', require('./routes/invoiceRoutes'));
 
