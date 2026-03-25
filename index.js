@@ -22,12 +22,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/invoices', require('./routes/invoiceRoutes'));
 
-// Serve static frontend files from 'public' folder inside 'backend'
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static frontend files from 'public' folder (one level up from /api)
+// app.use(express.static(path.join(__dirname, '../public')));
 
 // Fallback to index.html for unknown frontend routes
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    res.send("Hello World");
 });
 
 // Start Server
